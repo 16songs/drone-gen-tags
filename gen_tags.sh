@@ -15,11 +15,7 @@ if [ "$1" == --include-feature-tag ]; then
   INCLUDE_FEATURE_TAG="true"
 fi
 
-if [ -f "./version" ]; then
-  # a version file
-  VERSION=$(echo ./version)
-  echo "Found version file"
-elif [ -f "./Dockerfile" ]; then
+if [ -f "./Dockerfile" ]; then
   # from APPLICATION_VERSION in Docker file
   VERSION=$(grep 'ENV APPLICATION_VERSION' Dockerfile | awk '{print $3}')
   echo "Found version in Dockerfile file"
