@@ -5,4 +5,4 @@ RUN apk add --no-cache jq bash git
 
 ADD ./gen_tags.bash /bin
 
-CMD [ "gen_tags.bash" ]
+CMD [ "bash gen_tags.bash" ]
