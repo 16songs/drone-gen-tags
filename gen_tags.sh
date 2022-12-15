@@ -15,11 +15,7 @@ if [ "$1" == --include-feature-tag ]; then
   INCLUDE_FEATURE_TAG="true"
 fi
 
-if [ -f "./package.json" ]; then
-  # Node
-  VERSION=$(jq -r version ./package.json )
-  echo "Found package.json"
-elif [ -f "./version" ]; then
+if [ -f "./version" ]; then
   # a version file
   VERSION=$(echo ./version)
   echo "Found version file"
