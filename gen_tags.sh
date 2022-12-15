@@ -17,15 +17,19 @@ fi
 
 if [ -f "./package.json" ]; then
   # Node
-  VERSION=$(jq -r .version ./package.json )
+  VERSION=$(jq -r version ./package.json )
   echo "Found package.json"
-elif [ -f "./.version" ]; then
+elif [ -f "./version" ]; then
   # a version file
-  VERSION=$(echo ./.version)
-  echo "Found .version file"
+  VERSION=$(echo ./version)
+  echo "Found version file"
 elif [ -f "./Dockerfile" ]; then
   # from APPLICATION_VERSION in Docker file
   VERSION=$(grep 'ENV APPLICATION_VERSION' Dockerfile | awk '{print $3}')
+  echo "Found version in Dockerfile file"
+elif [ -f "./build/Dockerfile" ]; then
+  # from APPLICATION_VERSION in Docker file
+  VERSION=$(grep 'ENV APPLICATION_VERSION' ./build/Dockerfile | awk '{print $3}')
   echo "Found version in Dockerfile file"
 else
   echo "ERROR: Can't figure out version"
