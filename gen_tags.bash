@@ -4,7 +4,7 @@
 
 # Drone 5+ docker plugin will read PLUGIN_TAGS from a .env file
 # Tags:
-#   Feature branch: $VERSION-$COMMIT_DATE.$BRANCH.$SHA
+#   Feature branch: $VERSION-$COMMIT_DATE.$BRANCH.$SHA and "latest"
 #   production: $VERSION and "latest"
 #
 # Use --include-feature-tag to add a feature branch tag on a production branch commit
@@ -64,6 +64,7 @@ fi
 if [ "${INCLUDE_FEATURE_TAG}" == "true" ]; then
   echo "Writing feature style tag"
   TAGS+=("${VERSION}-${COMMIT_DATE}.${COMMIT_BRANCH}.${COMMIT_SHA}")
+  TAGS+=("latest")
 fi
 
 echo "Writing tags to .tags file:"
