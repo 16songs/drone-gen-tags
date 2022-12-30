@@ -63,7 +63,8 @@ fi
 
 if [ "${INCLUDE_FEATURE_TAG}" == "true" ]; then
   echo "Writing feature style tag"
-  TAGS+=("${VERSION}-${COMMIT_DATE}.${COMMIT_BRANCH}.${COMMIT_SHA}")
+  NEW_BRANCH_NAME=$(echo ${COMMIT_BRANCH} | tr / .)
+  TAGS+=("${VERSION}-${COMMIT_DATE}.${NEW_BRANCH_NAME}.${COMMIT_SHA}")
   TAGS+=("latest")
 fi
 
